@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import static main.Main.getKeyFromValue;
 
 /**
  *
@@ -81,6 +80,15 @@ public class LZW {
 
         }
         return l;
+
+    }
+     private int getKeyFromValue(Map<Integer, String> hm, String value) {
+        for (int o : hm.keySet()) {
+            if (hm.get(o).equals(value)) {
+                return o;
+            }
+        }
+        return 0;
 
     }
 

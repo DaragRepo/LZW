@@ -17,15 +17,7 @@ import java.util.Map;
  */
 public class Main {
 
-    public static int getKeyFromValue(Map<Integer, String> hm, String value) {
-        for (int o : hm.keySet()) {
-            if (hm.get(o).equals(value)) {
-                return o;
-            }
-        }
-        return 0;
-
-    }
+   
 
     public static void main(String[] args) {
 
