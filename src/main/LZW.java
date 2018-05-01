@@ -27,15 +27,15 @@ public class LZW {
     private Map initialDictionary() {
         for (int i = 0; i < this.s.length(); i++) {
             if (!this.m.containsValue(String.valueOf(this.s.charAt(i)))) {
-                this.m.put(this.count, String.valueOf(this.s.charAt(i)));
-                this.count++;
+                this.m.put((int) this.s.charAt(i), String.valueOf(this.s.charAt(i)));
             }
         }
-        return this.m ;
+        return this.m;
     }
 
     private List compress() {
         initialDictionary();
+        this.count = 128;
         List l = new LinkedList<Integer>();
         for (int i = 0; i < this.s.length(); i++) {
             if (!m.containsValue(String.valueOf(this.s.charAt(i)))) {
@@ -70,6 +70,7 @@ public class LZW {
                     l.add(index);
                     this.m.put(this.count, history);
                     this.count++;
+                    i = i + history.length() - 2;
                 }
                 //ababababa
                 //{2=ab,3=ba,4=aba,5=bab,6=abab,7=baba} 
@@ -79,10 +80,13 @@ public class LZW {
             }
 
         }
+//        System.out.println(initialDictionary());
         return l;
 
     }
-     private int getKeyFromValue(Map<Integer, String> hm, String value) {
+
+
+    private int getKeyFromValue(Map<Integer, String> hm, String value) {
         for (int o : hm.keySet()) {
             if (hm.get(o).equals(value)) {
                 return o;
